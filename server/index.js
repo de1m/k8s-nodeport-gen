@@ -80,18 +80,20 @@ function getPorts(callback) {
       if (res.statusCode == '200') {
         var APIres = JSON.parse(resData);
         APIres.items.forEach(service => {
-          service.spec.ports.forEach(port => {
-            if (port.nodePort !== undefined) {
-              nodePortsArr.push(port.nodePort)
-              portDataArr.push({
-                'svcname': service.metadata.name,
-                'svcportname': port.name,
-                'nodePort': port.nodePort,
-                'svcportint': port.port,
-                'svctype': port.protocol
-              })
-            }
-          })
+          if (service.spec.ports != undefined || service.spec.ports != null) {
+            service.spec.ports.forEach(port => {
+              if (port.nodePort !== undefined) {
+                nodePortsArr.push(port.nodePort)
+                portDataArr.push({
+                  'svcname': service.metadata.name,
+                  'svcportname': port.name,
+                  'nodePort': port.nodePort,
+                  'svcportint': port.port,
+                  'svctype': port.protocol
+                })
+              }
+            })
+          }
         });
         // let numRan = getRandomInt(30001,32000);
         let fileEx = fs.existsSync(portsFile)
