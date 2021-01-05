@@ -16,7 +16,7 @@
   "dependencies": {
     "@vuikit/icons": "^0.8.1",
     "@vuikit/theme": "^0.8.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "vue": "^2.5.2",
     "vue-clipboard2": "^0.2.1",
     "vuikit": "^0.8.5"
